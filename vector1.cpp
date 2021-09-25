@@ -38,7 +38,7 @@ public:
 
     double len2() {return x * x + y * y;}
 
-    float angle(Vector a) // float bcs doubles were defined to be int and I'm kinda lazy
+    float angle(Vector a) // float bcz doubles were defined to be int and I'm kinda lazy
     {
         float v1 = sqrt(float(x * x + y * y));
         float v2 = sqrt(float(a.x * a.x + a.y * a.y));
