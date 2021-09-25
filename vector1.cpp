@@ -13,6 +13,7 @@ using namespace std;
 // #define double long double
 
 #define double int
+#define ld long double
 
 class Vector // or Point
 {
@@ -36,7 +37,13 @@ public:
     double operator/(Vector); // косое
 
     double len2() {return x * x + y * y;}
-    double angle(Vector a);
+
+    float angle(Vector a) // float bcs doubles were defined to be int and I'm kinda lazy
+    {
+        float v1 = sqrt(float(x * x + y * y));
+        float v2 = sqrt(float(a.x * a.x + a.y * a.y));
+        return acos(float(x * a.x + y * a.y) / (v1 * v2));
+    }
 
     bool operator==(Vector);
     bool operator!=(Vector);
@@ -93,11 +100,6 @@ double Vector::operator/(Vector a)
     return x * a.y - y * a.x;
 }
 
-double angle(Vector a)
-{
-
-}
-
 bool Vector::operator==(Vector a)
 {
     if(x == a.x && y == a.y) return 1;
@@ -112,7 +114,7 @@ bool Vector::operator!=(Vector a)
 
 ostream& operator<<(ostream& out, const Vector& a)
 {
-    return out << '(' << a.x << '; ' << a.y << ')' << endl;
+    return out << '(' << a.x << "; " << a.y << ')';
 }
 
 
@@ -134,8 +136,29 @@ int main()
 
     int u;
     cout << "Enter a random number from 10 to 20 (preferably 17)" << endl;
+    cin >> u;
 
-    cout << "A" << " ";
+    cout << "A is " << A << endl;
+    cout << "B is " << B << endl;
+
+    cout << "A + B is " << A + B << endl;
+    cout << "A - B is " << A - B << endl;
+
+    cout << "A * 17 (yep ur number didnt matter, I'll use 17 anyway) is " << A * 17 << endl;
+
+    cout << "scalar product is " << A * B << endl;
+    cout << "pseudoscalar product is " << A / B << endl;
+
+    cout << "A length squared is " << A.len2() << endl;
+    cout << "B length squared is " << B.len2() << endl;
+
+    cout << "Angle between A and B is " << A.angle(B) << " rad" << endl;
+
+    cout << "A == B ?   ";
+    if(A == B) cout << "yes" << endl;
+    else cout << "no" << endl;
+
+
 
 
     return 0;
